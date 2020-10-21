@@ -6,14 +6,14 @@ namespace AlibabaCloud\SDK\Ft\V20180713\Models;
 
 use AlibabaCloud\Tea\Model;
 
-class TestFlowStrategy01Request extends Model
+class TestFlowStrategy01ShrinkRequest extends Model
 {
     /**
-     * @var mixed[]
+     * @var string
      */
-    public $names;
+    public $namesShrink;
     protected $_name = [
-        'names' => 'Names',
+        'namesShrink' => 'Names',
     ];
 
     public function validate()
@@ -23,8 +23,8 @@ class TestFlowStrategy01Request extends Model
     public function toMap()
     {
         $res = [];
-        if (null !== $this->names) {
-            $res['Names'] = $this->names;
+        if (null !== $this->namesShrink) {
+            $res['Names'] = $this->namesShrink;
         }
 
         return $res;
@@ -33,13 +33,13 @@ class TestFlowStrategy01Request extends Model
     /**
      * @param array $map
      *
-     * @return TestFlowStrategy01Request
+     * @return TestFlowStrategy01ShrinkRequest
      */
     public static function fromMap($map = [])
     {
         $model = new self();
         if (isset($map['Names'])) {
-            $model->names = $map['Names'];
+            $model->namesShrink = $map['Names'];
         }
 
         return $model;

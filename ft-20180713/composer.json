@@ -1,5 +1,5 @@
 {
-  "name": "alibabacloud/ft-20180713",
+  "name": "alibabacloud/ft-20180713-test",
   "description": "Alibaba Cloud Ft (20180713) SDK Library for PHP",
   "type": "library",
   "license": "Apache-2.0",
@@ -12,6 +12,7 @@
   "require": {
     "php": ">5.5",
     "alibabacloud/tea-utils": "^0.2.0",
+    "alibabacloud/tea-rpc-utils": "^0.2.0",
     "alibabacloud/tea-rpc": "^0.1.5",
     "alibabacloud/endpoint-util": "^0.1.0"
   },

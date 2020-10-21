@@ -9,12 +9,12 @@ use AlibabaCloud\Tea\Model;
 class disk extends Model
 {
     /**
-     * @var array
+     * @var string[]
      */
     public $size;
 
     /**
-     * @var array
+     * @var string[]
      */
     public $type;
     protected $_name = [
@@ -24,8 +24,6 @@ class disk extends Model
 
     public function validate()
     {
-        Model::validateRequired('size', $this->size, true);
-        Model::validateRequired('type', $this->type, true);
     }
 
     public function toMap()
