@@ -24,6 +24,8 @@ class disk extends Model
 
     public function validate()
     {
+        Model::validateRequired('size', $this->size, true);
+        Model::validateRequired('type', $this->type, true);
     }
 
     public function toMap()

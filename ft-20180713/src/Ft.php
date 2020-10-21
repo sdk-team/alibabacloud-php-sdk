@@ -25,12 +25,9 @@ use AlibabaCloud\SDK\Ft\V20180713\Models\FtParamListRequest;
 use AlibabaCloud\SDK\Ft\V20180713\Models\FtParamListResponse;
 use AlibabaCloud\SDK\Ft\V20180713\Models\TestFlowStrategy01Request;
 use AlibabaCloud\SDK\Ft\V20180713\Models\TestFlowStrategy01Response;
-use AlibabaCloud\SDK\Ft\V20180713\Models\TestFlowStrategy01ShrinkRequest;
 use AlibabaCloud\SDK\Ft\V20180713\Models\TestHttpApiRequest;
 use AlibabaCloud\SDK\Ft\V20180713\Models\TestHttpApiResponse;
-use AlibabaCloud\SDK\Ft\V20180713\Models\TestHttpApiShrinkRequest;
 use AlibabaCloud\Tea\Rpc\Rpc;
-use AlibabaCloud\Tea\RpcUtils\RpcUtils;
 use AlibabaCloud\Tea\Utils\Utils;
 use AlibabaCloud\Tea\Utils\Utils\RuntimeOptions;
 
@@ -93,19 +90,14 @@ class Ft extends Rpc
     }
 
     /**
-     * @param TestFlowStrategy01Request $tmp
+     * @param TestFlowStrategy01Request $request
      * @param RuntimeOptions            $runtime
      *
      * @return TestFlowStrategy01Response
      */
-    public function testFlowStrategy01WithOptions($tmp, $runtime)
+    public function testFlowStrategy01WithOptions($request, $runtime)
     {
-        Utils::validateModel($tmp);
-        $request = new TestFlowStrategy01ShrinkRequest([]);
-        RpcUtils::convert($tmp, $request);
-        if (!Utils::isUnset($tmp->names)) {
-            $request->namesShrink = Utils::toJSONString($tmp->names);
-        }
+        Utils::validateModel($request);
 
         return TestFlowStrategy01Response::fromMap($this->doRequest('TestFlowStrategy01', 'HTTPS', 'PUT', '2018-07-13', 'AK', null, $request, $runtime));
     }
@@ -123,25 +115,14 @@ class Ft extends Rpc
     }
 
     /**
-     * @param TestHttpApiRequest $tmp
+     * @param TestHttpApiRequest $request
      * @param RuntimeOptions     $runtime
      *
      * @return TestHttpApiResponse
      */
-    public function testHttpApiWithOptions($tmp, $runtime)
+    public function testHttpApiWithOptions($request, $runtime)
     {
-        Utils::validateModel($tmp);
-        $request = new TestHttpApiShrinkRequest([]);
-        RpcUtils::convert($tmp, $request);
-        if (!Utils::isUnset($tmp->stringValue)) {
-            $request->stringValueShrink = Utils::toJSONString($tmp->stringValue);
-        }
-        if (!Utils::isUnset($tmp->defaultValue)) {
-            $request->defaultValueShrink = Utils::toJSONString($tmp->defaultValue);
-        }
-        if (!Utils::isUnset($tmp->otherParam)) {
-            $request->otherParamShrink = Utils::toJSONString($tmp->otherParam);
-        }
+        Utils::validateModel($request);
 
         return TestHttpApiResponse::fromMap($this->doRequest('TestHttpApi', 'HTTPS', 'POST', '2018-07-13', 'AK', null, $request, $runtime));
     }
