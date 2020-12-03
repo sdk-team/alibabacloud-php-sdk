@@ -25,9 +25,13 @@ use AlibabaCloud\SDK\Ft\V20180713\Models\FtParamListRequest;
 use AlibabaCloud\SDK\Ft\V20180713\Models\FtParamListResponse;
 use AlibabaCloud\SDK\Ft\V20180713\Models\TestFlowStrategy01Request;
 use AlibabaCloud\SDK\Ft\V20180713\Models\TestFlowStrategy01Response;
+use AlibabaCloud\SDK\Ft\V20180713\Models\TestFlowStrategy01ShrinkRequest;
 use AlibabaCloud\SDK\Ft\V20180713\Models\TestHttpApiRequest;
 use AlibabaCloud\SDK\Ft\V20180713\Models\TestHttpApiResponse;
+use AlibabaCloud\SDK\Ft\V20180713\Models\TestHttpApiShrinkRequest;
 use AlibabaCloud\Tea\Rpc\Rpc;
+use AlibabaCloud\Tea\RpcUtils\RpcUtils;
+use AlibabaCloud\Tea\Tea;
 use AlibabaCloud\Tea\Utils\Utils;
 use AlibabaCloud\Tea\Utils\Utils\RuntimeOptions;
 
@@ -62,6 +66,7 @@ class Ft extends Rpc
             'cn-hangzhou-test-306'        => 'ft.aliyuncs.com',
             'cn-hongkong-finance-pop'     => 'ft.aliyuncs.com',
             'cn-huhehaote'                => 'ft.aliyuncs.com',
+            'cn-huhehaote-nebula-1'       => 'ft.aliyuncs.com',
             'cn-qingdao'                  => 'ft.aliyuncs.com',
             'cn-qingdao-nebula'           => 'ft.aliyuncs.com',
             'cn-shanghai-et15-b01'        => 'ft.aliyuncs.com',
@@ -74,7 +79,9 @@ class Ft extends Rpc
             'cn-shenzhen-st4-d01'         => 'ft.aliyuncs.com',
             'cn-shenzhen-su18-b01'        => 'ft.aliyuncs.com',
             'cn-wuhan'                    => 'ft.aliyuncs.com',
+            'cn-wulanchabu'               => 'ft.aliyuncs.com',
             'cn-yushanfang'               => 'ft.aliyuncs.com',
+            'cn-zhangbei'                 => 'ft.aliyuncs.com',
             'cn-zhangbei-na61-b01'        => 'ft.aliyuncs.com',
             'cn-zhangjiakou-na62-a01'     => 'ft.aliyuncs.com',
             'cn-zhengzhou-nebula-1'       => 'ft.aliyuncs.com',
@@ -90,16 +97,21 @@ class Ft extends Rpc
     }
 
     /**
-     * @param TestFlowStrategy01Request $request
+     * @param TestFlowStrategy01Request $tmp
      * @param RuntimeOptions            $runtime
      *
      * @return TestFlowStrategy01Response
      */
-    public function testFlowStrategy01WithOptions($request, $runtime)
+    public function testFlowStrategy01WithOptions($tmp, $runtime)
     {
-        Utils::validateModel($request);
+        Utils::validateModel($tmp);
+        $request = new TestFlowStrategy01ShrinkRequest([]);
+        RpcUtils::convert($tmp, $request);
+        if (!Utils::isUnset($tmp->names)) {
+            $request->namesShrink = Utils::toJSONString($tmp->names);
+        }
 
-        return TestFlowStrategy01Response::fromMap($this->doRequest('TestFlowStrategy01', 'HTTPS', 'PUT', '2018-07-13', 'AK', null, $request, $runtime));
+        return TestFlowStrategy01Response::fromMap($this->doRequest('TestFlowStrategy01', 'HTTPS', 'PUT', '2018-07-13', 'AK', null, Tea::merge($request), $runtime));
     }
 
     /**
@@ -115,16 +127,27 @@ class Ft extends Rpc
     }
 
     /**
-     * @param TestHttpApiRequest $request
+     * @param TestHttpApiRequest $tmp
      * @param RuntimeOptions     $runtime
      *
      * @return TestHttpApiResponse
      */
-    public function testHttpApiWithOptions($request, $runtime)
+    public function testHttpApiWithOptions($tmp, $runtime)
     {
-        Utils::validateModel($request);
+        Utils::validateModel($tmp);
+        $request = new TestHttpApiShrinkRequest([]);
+        RpcUtils::convert($tmp, $request);
+        if (!Utils::isUnset($tmp->stringValue)) {
+            $request->stringValueShrink = Utils::toJSONString($tmp->stringValue);
+        }
+        if (!Utils::isUnset($tmp->defaultValue)) {
+            $request->defaultValueShrink = Utils::toJSONString($tmp->defaultValue);
+        }
+        if (!Utils::isUnset($tmp->otherParam)) {
+            $request->otherParamShrink = Utils::toJSONString($tmp->otherParam);
+        }
 
-        return TestHttpApiResponse::fromMap($this->doRequest('TestHttpApi', 'HTTPS', 'POST', '2018-07-13', 'AK', null, $request, $runtime));
+        return TestHttpApiResponse::fromMap($this->doRequest('TestHttpApi', 'HTTPS', 'POST', '2018-07-13', 'AK', null, Tea::merge($request), $runtime));
     }
 
     /**
@@ -149,7 +172,7 @@ class Ft extends Rpc
     {
         Utils::validateModel($request);
 
-        return BatchAuditTest01Response::fromMap($this->doRequest('BatchAuditTest01', 'HTTPS', 'POST', '2018-07-13', 'Anonymous', null, $request, $runtime));
+        return BatchAuditTest01Response::fromMap($this->doRequest('BatchAuditTest01', 'HTTPS', 'POST', '2018-07-13', 'Anonymous', null, Tea::merge($request), $runtime));
     }
 
     /**
@@ -174,7 +197,7 @@ class Ft extends Rpc
     {
         Utils::validateModel($request);
 
-        return FtIpFlowControlResponse::fromMap($this->doRequest('FtIpFlowControl', 'HTTPS', 'POST', '2018-07-13', 'Anonymous', null, $request, $runtime));
+        return FtIpFlowControlResponse::fromMap($this->doRequest('FtIpFlowControl', 'HTTPS', 'POST', '2018-07-13', 'Anonymous', null, Tea::merge($request), $runtime));
     }
 
     /**
@@ -199,7 +222,7 @@ class Ft extends Rpc
     {
         Utils::validateModel($request);
 
-        return FtDynamicAddressDubboResponse::fromMap($this->doRequest('FtDynamicAddressDubbo', 'HTTPS', 'POST', '2018-07-13', 'AK', null, $request, $runtime));
+        return FtDynamicAddressDubboResponse::fromMap($this->doRequest('FtDynamicAddressDubbo', 'HTTPS', 'POST', '2018-07-13', 'AK', null, Tea::merge($request), $runtime));
     }
 
     /**
@@ -224,7 +247,7 @@ class Ft extends Rpc
     {
         Utils::validateModel($request);
 
-        return FtDynamicAddressHsfResponse::fromMap($this->doRequest('FtDynamicAddressHsf', 'HTTPS', 'POST', '2018-07-13', 'AK', null, $request, $runtime));
+        return FtDynamicAddressHsfResponse::fromMap($this->doRequest('FtDynamicAddressHsf', 'HTTPS', 'POST', '2018-07-13', 'AK', null, Tea::merge($request), $runtime));
     }
 
     /**
@@ -249,7 +272,7 @@ class Ft extends Rpc
     {
         Utils::validateModel($request);
 
-        return FtFlowSpecialResponse::fromMap($this->doRequest('FtFlowSpecial', 'HTTPS', 'POST', '2018-07-13', 'AK', null, $request, $runtime));
+        return FtFlowSpecialResponse::fromMap($this->doRequest('FtFlowSpecial', 'HTTPS', 'POST', '2018-07-13', 'AK', null, Tea::merge($request), $runtime));
     }
 
     /**
@@ -274,7 +297,7 @@ class Ft extends Rpc
     {
         Utils::validateModel($request);
 
-        return FTApiAliasApiResponse::fromMap($this->doRequest('FTApiAliasApi', 'HTTPS', 'POST', '2018-07-13', 'AK', null, $request, $runtime));
+        return FTApiAliasApiResponse::fromMap($this->doRequest('FTApiAliasApi', 'HTTPS', 'POST', '2018-07-13', 'AK', null, Tea::merge($request), $runtime));
     }
 
     /**
@@ -299,7 +322,7 @@ class Ft extends Rpc
     {
         Utils::validateModel($request);
 
-        return FtEagleEyeResponse::fromMap($this->doRequest('FtEagleEye', 'HTTPS', 'POST', '2018-07-13', 'AK', null, $request, $runtime));
+        return FtEagleEyeResponse::fromMap($this->doRequest('FtEagleEye', 'HTTPS', 'POST', '2018-07-13', 'AK', null, Tea::merge($request), $runtime));
     }
 
     /**
@@ -324,7 +347,7 @@ class Ft extends Rpc
     {
         Utils::validateModel($request);
 
-        return FtParamListResponse::fromMap($this->doRequest('FtParamList', 'HTTPS', 'POST', '2018-07-13', 'AK', null, $request, $runtime));
+        return FtParamListResponse::fromMap($this->doRequest('FtParamList', 'HTTPS', 'POST', '2018-07-13', 'AK', null, Tea::merge($request), $runtime));
     }
 
     /**
@@ -349,7 +372,7 @@ class Ft extends Rpc
     {
         Utils::validateModel($request);
 
-        return FtGatedLaunchPolicy4Response::fromMap($this->doRequest('FtGatedLaunchPolicy4', 'HTTPS', 'POST', '2018-07-13', 'AK', null, $request, $runtime));
+        return FtGatedLaunchPolicy4Response::fromMap($this->doRequest('FtGatedLaunchPolicy4', 'HTTPS', 'POST', '2018-07-13', 'AK', null, Tea::merge($request), $runtime));
     }
 
     /**
@@ -380,8 +403,8 @@ class Ft extends Rpc
         if (!Utils::empty_($endpoint)) {
             return $endpoint;
         }
-        if (!Utils::isUnset($endpointMap) && !Utils::empty_($endpointMap['regionId'])) {
-            return $endpointMap['regionId'];
+        if (!Utils::isUnset($endpointMap) && !Utils::empty_(@$endpointMap[$regionId])) {
+            return @$endpointMap[$regionId];
         }
 
         return Endpoint::getEndpointRules($productId, $regionId, $endpointRule, $network, $suffix);
