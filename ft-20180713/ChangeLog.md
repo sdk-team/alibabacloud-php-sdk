@@ -1,3 +1,6 @@
+2021-02-26 Version: 1.0.6
+- Generated php 2018-07-13 for Ft.
+
 2021-02-26 Version: 1.0.5
 - Generated php 2018-07-13 for Ft.
 
